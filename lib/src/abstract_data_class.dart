@@ -18,7 +18,8 @@ abstract class CommonDataClass<T extends CommonDataClass<T>> {
   }
 
   /// Creates an instance of the data object from a map based on its type [T].
-  static T? createFromMap<T extends CommonDataClass<T>>(Map<String, dynamic> map) {
+  static T? createFromMap<T extends CommonDataClass<T>>(
+      Map<String, dynamic> map) {
     var type = subclasses["$T"];
     if (type == null) {
       return null;

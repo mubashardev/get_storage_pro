@@ -1,8 +1,11 @@
 library get_storage_pro;
+
 export 'package:get_storage_pro/src/abstract_data_class.dart';
+export 'package:get_storage/get_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_storage_pro/src/abstract_data_class.dart';
 import 'package:get_storage/get_storage.dart';
+
 /// A class providing utility methods for storing and retrieving objects using GetStorage.
 class GetStoragePro {
   /// Retrieves an object of type [T] by its [id] from storage.
