@@ -1,6 +1,6 @@
 name: get_storage_pro
 description: "Get Storage with extended functionalities for simplified data storage and retrieval"
-version: 0.0.6
+version: 0.0.7
 homepage: https://github.com/MicroProgramer/get_storage_pro.git
 
 environment:

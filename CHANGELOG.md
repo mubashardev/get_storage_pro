@@ -40,7 +40,7 @@ Thank you for using `get_storage_pro`!
 
 </details>
 
-## 0.0.6
+## 0.0.7
 
 <details>
 <summary>Release Notes</summary>
@@ -52,10 +52,10 @@ package.
 
 ### New Features
 
-- Added `removeFromGetStorage` function to remove a specific object of type [T] from storage.
-- Implemented `removeAllFromGetStorage` function to remove all objects of type [T] from storage.
-- Introduced `listenKey` function to listen for changes to a specific object of type [T].
-- Added `listenAll` function to listen for changes to all objects of type [T].
+- Added `deleteById` function to remove a specific object of type [T] from storage.
+- Implemented `deleteAllObjects` function to remove all objects of type [T] from storage.
+- Introduced `listenForObjectChanges` function to listen for changes to a specific object of type [T].
+- Added `listenAllObjects` function to listen for changes to all objects of type [T].
 
 ### Changes and Enhancements
 

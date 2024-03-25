@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get_storage_pro/get_storage_pro.dart';
 
 void main() async {
-  await GetStorage.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  // Initialize GetStoragePro (call this before using any GetStoragePro functionality)
+  await GetStoragePro.init();
+
+  // Your code here...
   runApp(const MyApp());
 }
 
@@ -34,7 +38,7 @@ class HomePage extends StatelessWidget {
             User user = User(id: '1', name: 'John');
             debugPrint(user.map.toString()); // Output: {id: 1, name: John}
 
-            GetStoragePro.addToGetStorage<User>(user);
+            GetStoragePro.saveObject<User>(user);
           },
           child: const Text('Run Example'),
         ),
