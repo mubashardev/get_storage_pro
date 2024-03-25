@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
             User user = User(id: '1', name: 'John');
             debugPrint(user.map.toString()); // Output: {id: 1, name: John}
 
-            GetStoragePro.saveObject<User>(user);
+            GetStoragePro.saveObject(user);
           },
           child: const Text('Run Example'),
         ),
