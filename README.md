@@ -12,6 +12,27 @@ A Flutter package dependent on [`get_storage`](https://pub.dev/packages/get_stor
 
 `get_storage_pro` simplifies the process of storing and retrieving objects directly to/from storage, eliminating the need to manually convert objects to maps and vice versa. It provides functionalities to store objects, lists of objects, and fetch single or multiple objects from storage.
 
+**Important**: Before using `GetStoragePro`, ensure you call `GetStoragePro.init()` to initialize the package. Unlike `get_storage`, there's no need to call `GetStorage.init()` separately.
+
+
+### Example:
+
+```dart
+import 'package:get_storage_pro/get_storage_pro.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize GetStoragePro (call this before using any GetStoragePro functionality)
+  await GetStoragePro.init();
+
+  // Your code here...
+  runApp(const MyApp());
+}
+```
+
+---
+
 # 🔨 Usage
 
 1. Define your model classes by extending `CommonDataClass` and implementing required functions. Ensure your model class includes an `id` attribute of type `String`.
