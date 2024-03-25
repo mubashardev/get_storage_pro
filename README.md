@@ -55,24 +55,36 @@ void main() {
   // Get all saved objects
   List<YourModel> allModels = GetStoragePro.getAllSaved<YourModel>();
   print(allModels.length); // Output: 3 (including the previously saved objects)
+
+  // Remove an object by ID
+  GetStoragePro.removeFromGetStorage<YourModel>('1');
+
+  // Remove all objects of type YourModel
+  GetStoragePro.removeAllFromGetStorage<YourModel>();
+
+  // Listen for changes to a specific object by ID
+  GetStoragePro.listenKey<YourModel>(id: '1', onData: (model) {
+    print('Updated model: ${model?.name}');
+  });
+
+  // Listen for changes to all objects of type YourModel
+  GetStoragePro.listenAll<YourModel>(onData: (models) {
+    print('All models: $models');
+  });
 }
 ```
 
 # API
 ## `GetStoragePro`
 
-`static T? getById<T extends CommonDataClass<T>>(String id)`
-* Retrieves an object of type `T` by its ID from storage.
-* Returns `null` if no object with the specified ID is found.
-  `static void saveListToGetStorage<T extends CommonDataClass<T>>(List<CommonDataClass<T>> data)`
-* Saves a list of objects of type `T` to storage.
-  `static void addToGetStorage<T extends CommonDataClass<T>>(CommonDataClass<T> data)`
-* Saves a single object of type `T` to storage.
-  `static List<T> getAllSaved<T extends CommonDataClass<T>>()`
-* Retrieves all saved objects of type T from storage.
-## `CommonDataClass`
-* A base class for model classes.
-* Provides functions `fromMap` and `map` which need to be implemented by subclassing model classes.
+* `T? getById<T extends CommonDataClass<T>>(String id)`: Retrieves an object of type T by its ID from storage. Returns null if no object with the specified ID is found.
+* `void saveListToGetStorage<T extends CommonDataClass<T>>(List<CommonDataClass<T>> data)`: Saves a list of objects of type T to storage.
+* `void addToGetStorage<T extends CommonDataClass<T>>(CommonDataClass<T> data)`: Saves a single object of type T to storage.
+* `List<T> getAllSaved<T extends CommonDataClass<T>>()`: Retrieves all saved objects of type T from storage.
+* `void removeFromGetStorage<T extends CommonDataClass<T>>(String id)`: Removes the object with the specified ID of type T from storage.
+* `void removeAllFromGetStorage<T extends CommonDataClass<T>>()`: Removes all objects of type T from storage.
+* `void listenKey<T extends CommonDataClass<T>>({required String id, required Function(T?) onData})`: Listens for changes to a specific object of type T by its ID. Calls onData with the updated object whenever changes occur.
+* `void listenAll<T extends CommonDataClass<T>>({required Function(List<T>) onData})`: Listens for changes to all objects of type T. Calls onData with the updated list of objects whenever changes occur.
 
 ```dart
 abstract class CommonDataClass<T extends CommonDataClass<T>> {
