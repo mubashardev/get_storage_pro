@@ -1,10 +1,11 @@
 library get_storage_pro;
 
-export 'package:get_storage_pro/src/abstract_data_class.dart';
-export 'package:get_storage/get_storage.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get_storage_pro/src/abstract_data_class.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:get_storage_pro/src/abstract_data_class.dart';
+
+export 'package:get_storage/get_storage.dart';
+export 'package:get_storage_pro/src/abstract_data_class.dart';
 
 /// A class providing utility methods for storing and retrieving objects using GetStorage.
 class GetStoragePro {
@@ -13,7 +14,7 @@ class GetStoragePro {
   /// Returns `null` if no object with the specified ID is found.
   static T? getById<T extends CommonDataClass<T>>(String id) {
     var key = "$T|$id";
-    var savedMap = GetStorage().read<Map<String, dynamic>>(key) ?? {};
+    var savedMap = GetStorage("$T").read<Map<String, dynamic>>(key) ?? {};
     try {
       var instance = CommonDataClass.createFromMap<T>(savedMap);
       return instance;
@@ -27,7 +28,7 @@ class GetStoragePro {
       List<CommonDataClass<T>> data) {
     for (var element in data) {
       var key = "$T|${element.id}";
-      GetStorage().write(key, element.map);
+      GetStorage("$T").write(key, element.map);
     }
   }
 
@@ -35,14 +36,12 @@ class GetStoragePro {
   static void addToGetStorage<T extends CommonDataClass<T>>(
       CommonDataClass<T> data) {
     var key = "$T|${data.id}";
-    GetStorage().write(key, data.map);
+    GetStorage("$T").write(key, data.map);
   }
 
   /// Retrieves all saved objects of type [T] from storage.
   static List<T> getAllSaved<T extends CommonDataClass<T>>() {
-    var requiredKeys = GetStorage()
-        .getKeys<Iterable<String>>()
-        .where((element) => element.startsWith("$T|"));
+    var requiredKeys = GetStorage("$T").getKeys<Iterable<String>>();
     var data = <T>[];
     for (var element in requiredKeys) {
       try {
@@ -54,5 +53,48 @@ class GetStoragePro {
       }
     }
     return data;
+  }
+
+  /// Removes the object with the specified [id] of type [T] from storage.
+  static void removeFromGetStorage<T extends CommonDataClass<T>>(String id) {
+    var key = "$T|$id";
+    GetStorage("$T").remove(key);
+  }
+
+  /// Removes all objects of type [T] from storage.
+  static void removeAllFromGetStorage<T extends CommonDataClass<T>>() {
+    var requiredKeys = GetStorage("$T").getKeys<Iterable<String>>();
+    for (var element in requiredKeys) {
+      removeFromGetStorage<T>(element.split('|').last);
+    }
+  }
+
+  /// Listens for changes to the object with the specified [id] of type [T].
+  ///
+  /// Calls [onData] with the updated object whenever changes occur.
+  static void listenKey<T extends CommonDataClass<T>>(
+      {required String id, required Function(T?) onData}) {
+    var key = "$T|$id";
+    // Initial Data
+    onData(getById(id));
+
+    // Listen for changes
+    GetStorage("$T").listenKey(key, (value) {
+      onData(getById(id));
+    });
+  }
+
+  /// Listens for changes to all objects of type [T].
+  ///
+  /// Calls [onData] with the updated list of objects whenever changes occur.
+  static void listenAll<T extends CommonDataClass<T>>(
+      {required Function(List<T>) onData}) {
+    // Initial Data
+    onData(getAllSaved());
+
+    // Listen for changes
+    GetStorage("$T").listen(() {
+      onData(getAllSaved());
+    });
   }
 }

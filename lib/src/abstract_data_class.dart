@@ -10,17 +10,17 @@ abstract class CommonDataClass<T extends CommonDataClass<T>> {
   T fromJson(Map<String, dynamic> map);
 
   /// A map of subclasses for each type of CommonDataClass.
-  static Map<String, CommonDataClass> subclasses = {};
+  static final Map<String, CommonDataClass> _subclasses = {};
 
   /// Constructor for CommonDataClass.
   CommonDataClass() {
-    subclasses["$T"] = this;
+    _subclasses["$T"] = this;
   }
 
   /// Creates an instance of the data object from a map based on its type [T].
   static T? createFromMap<T extends CommonDataClass<T>>(
       Map<String, dynamic> map) {
-    var type = subclasses["$T"];
+    var type = _subclasses["$T"];
     if (type == null) {
       return null;
     } else {

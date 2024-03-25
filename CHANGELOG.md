@@ -31,11 +31,52 @@ Thank you for using `get_storage_pro`!
 
 </details>
 
-## 0.0.2 
+## 0.0.3
 
 <details>
 <summary>Release Notes</summary>
 
 - Added Example main.dart
+
+</details>
+
+## 0.0.4
+
+<details>
+<summary>Release Notes</summary>
+
+### Overview
+
+This release introduces several new functionalities and improvements to the `get_storage_pro`
+package.
+
+### New Features
+
+- Added `removeFromGetStorage` function to remove a specific object of type [T] from storage.
+- Implemented `removeAllFromGetStorage` function to remove all objects of type [T] from storage.
+- Introduced `listenKey` function to listen for changes to a specific object of type [T].
+- Added `listenAll` function to listen for changes to all objects of type [T].
+
+### Changes and Enhancements
+
+- Improved documentation comments for better clarity and understanding.
+- Enhanced error handling and error reporting.
+
+### Future Plans
+
+In future releases, we plan to continue improving existing functionalities and adding more features,
+including:
+
+- Support for advanced data manipulation operations.
+- Performance optimizations.
+- Expanded documentation with more examples and tutorials.
+
+### Contributions
+
+Contributions to this package are welcome! Feel free to fork the repository and contribute
+improvements, bug fixes, or new features. Pull requests will be actively reviewed and accepted after
+verification.
+
+Thank you for using `get_storage_pro`!
 
 </details>
