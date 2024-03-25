@@ -30,3 +30,12 @@ This package is open-source, and contributions are welcome! Feel free to fork th
 Thank you for using `get_storage_pro`!
 
 </details>
+
+## 0.0.2 
+
+<details>
+<summary>Release Notes</summary>
+
+- Added Example main.dart
+
+</details>

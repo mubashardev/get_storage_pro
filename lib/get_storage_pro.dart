@@ -1,5 +1,5 @@
 library get_storage_pro;
-
+export 'package:get_storage_pro/src/abstract_data_class.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_storage_pro/src/abstract_data_class.dart';
 import 'package:get_storage/get_storage.dart';
