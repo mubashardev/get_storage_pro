@@ -1,4 +1,10 @@
-# get_storage_pro
+# 💾 Get Storage Pro 💾
+
+[![Pub](https://img.shields.io/pub/v/get_storage_pro)](https://pub.dartlang.org/packages/get_storage_pro)
+[![Pub](https://img.shields.io/github/stars/MicroProgramer/get_storage_pro)](https://github.com/MicroProgramer/get_storage_pro)
+[![Pub](https://img.shields.io/github/last-commit/MicroProgramer/get_storage_pro)](https://github.com/MicroProgramer/get_storage_pro)
+
+
 
 A Flutter package dependent on [`get_storage`](https://pub.dev/packages/get_storage) for extending functionalities of [`get_storage`](https://pub.dev/packages/get_storage).
 
@@ -6,7 +12,7 @@ A Flutter package dependent on [`get_storage`](https://pub.dev/packages/get_stor
 
 `get_storage_pro` simplifies the process of storing and retrieving objects directly to/from storage, eliminating the need to manually convert objects to maps and vice versa. It provides functionalities to store objects, lists of objects, and fetch single or multiple objects from storage.
 
-## Usage
+# 🔨 Usage
 
 1. Define your model classes by extending `CommonDataClass` and implementing required functions. Ensure your model class includes an `id` attribute of type `String`.
 
@@ -55,7 +61,7 @@ void main() {
   // Get all saved objects
   List<YourModel> allModels = GetStoragePro.getAllSaved<YourModel>();
   print(allModels.length); // Output: 3 (including the previously saved objects)
-
+  
   // Remove an object by ID
   GetStoragePro.removeFromGetStorage<YourModel>('1');
 
@@ -74,7 +80,7 @@ void main() {
 }
 ```
 
-# API
+# 📢 Functionality
 ## `GetStoragePro`
 
 * `T? getById<T extends CommonDataClass<T>>(String id)`: Retrieves an object of type T by its ID from storage. Returns null if no object with the specified ID is found.
@@ -86,24 +92,13 @@ void main() {
 * `void listenKey<T extends CommonDataClass<T>>({required String id, required Function(T?) onData})`: Listens for changes to a specific object of type T by its ID. Calls onData with the updated object whenever changes occur.
 * `void listenAll<T extends CommonDataClass<T>>({required Function(List<T>) onData})`: Listens for changes to all objects of type T. Calls onData with the updated list of objects whenever changes occur.
 
-```dart
-abstract class CommonDataClass<T extends CommonDataClass<T>> {
-String get id;
-Map<String, dynamic> get map;
 
-T fromMap(Map<String, dynamic> map);
-
-// Other abstract methods and properties...
-}
-```
-
-## Note
+## 📓 Note
 Ensure your model classes must extend `CommonDataClass` and implement the required functions.
 This package relies on the [`get_storage`](https://pub.dev/packages/get_storage) package for storage functionality.
 
-#
-## Additional Notes
-
 - This is a basic implementation. In the future, more features will be added and existing ones will be improved.
-- Contributions are welcome! This package is open-source, and anyone can fork and contribute to it to make it more powerful and easy to use.
-- Pull requests will be actively reviewed and accepted after verification.
+
+# 👋 Get Involved
+
+If this package is useful to you please 👍 on [pub.dev](https://pub.dev/packages/get_storage_pro) and ⭐ on [GitHub](https://github.com/MicroProgramer/get_storage_pro). If you have any Issues, recommendations or pull requests I'd love to see them!

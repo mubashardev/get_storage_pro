@@ -34,9 +34,7 @@ class HomePage extends StatelessWidget {
             User user = User(id: '1', name: 'John');
             debugPrint(user.map.toString()); // Output: {id: 1, name: John}
 
-            Map<String, dynamic> userData = {'id': '2', 'name': 'Alice'};
-            User retrievedUser = CommonDataClass.createFromMap<User>(userData)!;
-            debugPrint(retrievedUser.name); // Output: Alice
+            GetStoragePro.addToGetStorage<User>(user);
           },
           child: const Text('Run Example'),
         ),

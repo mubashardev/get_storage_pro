@@ -40,7 +40,7 @@ Thank you for using `get_storage_pro`!
 
 </details>
 
-## 0.0.4
+## 0.0.6
 
 <details>
 <summary>Release Notes</summary>
