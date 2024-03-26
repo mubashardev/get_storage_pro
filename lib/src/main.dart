@@ -120,7 +120,7 @@ class GetStoragePro {
   }
 
   static Future<void> _putAndInit(String container) async {
-    List<String> allContainers = GetStorage().read("containers") ?? [];
+    List<String> allContainers = (GetStorage().read("containers") as List<dynamic>? ?? []).map((e) => e.toString()).toList();
     if (!allContainers.contains(container)) {
       allContainers.add(container);
       await GetStorage().write("containers", allContainers);
