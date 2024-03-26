@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             // Example usage of CommonDataClass and its subclasses
             User user = User(id: '1', name: 'John');
-            debugPrint(user.map.toString()); // Output: {id: 1, name: John}
+            debugPrint(user.toMap().toString()); // Output: {id: 1, name: John}
 
             GetStoragePro.saveObject(user);
           },
@@ -49,19 +49,25 @@ class HomePage extends StatelessWidget {
 
 // Example subclass of CommonDataClass
 class User extends CommonDataClass<User> {
+  @override
   final String id;
   final String name;
 
   User({required this.id, required this.name});
 
   @override
-  User fromJson(Map<String, dynamic> map) {
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+    };
+  }
+
+  @override
+  User fromMap(Map<String, dynamic> map) {
     return User(
       id: map['id'] as String,
       name: map['name'] as String,
     );
   }
-
-  @override
-  Map<String, dynamic> get map => {'id': id, 'name': name};
 }

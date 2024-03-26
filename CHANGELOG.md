@@ -31,12 +31,14 @@ Thank you for using `get_storage_pro`!
 
 </details>
 
-## 0.0.3
+## 0.0.8
 
 <details>
 <summary>Release Notes</summary>
 
 - Added Example main.dart
+- Added `deleteById` function to remove a specific object of type [T] from storage.
+- Implemented `deleteAllObjects` function to remove all objects of type [T] from storage.
 
 </details>
 
@@ -52,9 +54,8 @@ package.
 
 ### New Features
 
-- Added `deleteById` function to remove a specific object of type [T] from storage.
-- Implemented `deleteAllObjects` function to remove all objects of type [T] from storage.
 - Introduced `listenForObjectChanges` function to listen for changes to a specific object of type [T].
+- Added `eraseAll` with an optional bool parameter [eraseMainGetStorage] (true by default) to erase complete `GetStoragePro` and `GetStorage` default data.
 - Added `listenAllObjects` function to listen for changes to all objects of type [T].
 
 ### Changes and Enhancements
@@ -79,4 +80,20 @@ verification.
 
 Thank you for using `get_storage_pro`!
 
+</details>
+
+## 0.1.2
+<details>
+<summary>Release Notes</summary>
+
+### Changes and Enhancements
+- Improved & optimised performance
+
+### Contributions
+
+Contributions to this package are always welcome! Feel free to fork the repository and contribute
+improvements, bug fixes, or new features. Pull requests will be actively reviewed and accepted after
+verification.
+
+Thank you for using `get_storage_pro`!
 </details>

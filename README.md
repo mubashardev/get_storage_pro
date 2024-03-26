@@ -35,10 +35,10 @@ void main() async {
 
 # 🔨 Usage
 
-1. Define your model classes by extending `CommonDataClass` and implementing required functions. Ensure your model class includes an `id` attribute of type `String`.
+1. Define your model classes by extending `CommonDataClass` and implementing required functions. Ensure your model class includes an `id` attribute of type `String`. And implement `fromMap` and `toMap` methods.
 
 ```dart
-import 'package:get_storage_pro/src/abstract_data_class.dart';
+import 'package:get_storage_pro/src/common_data_class.dart';
 
 class YourModel extends CommonDataClass<YourModel> {
   final String id;
@@ -55,7 +55,9 @@ class YourModel extends CommonDataClass<YourModel> {
   }
 
   @override
-  Map<String, dynamic> get map => {'id': id, 'name': name};
+  Map<String, dynamic> toMap() {
+    return {'id': id, 'name': name};
+  }
 }
 ```
 ## Use `GetStoragePro` to store and fetch data:
