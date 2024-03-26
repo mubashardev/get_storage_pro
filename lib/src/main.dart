@@ -113,7 +113,7 @@ class GetStoragePro {
   /// No need to call `GetStorage.init()`
   static Future<void> init() async {
     await GetStorage.init();
-    List<String> allContainers = GetStorage().read("containers") ?? [];
+    List<String> allContainers = (GetStorage().read("containers") as List<dynamic>? ?? []).map((e) => e.toString()).toList();
     await Future.forEach(allContainers, (element) async {
       await GetStorage.init(element);
     });

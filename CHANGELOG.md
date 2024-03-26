@@ -97,3 +97,19 @@ verification.
 
 Thank you for using `get_storage_pro`!
 </details>
+
+## 0.1.3
+<details>
+<summary>Release Notes</summary>
+
+### Changes and Enhancements
+- Fixed containers bug
+
+### Contributions
+
+Contributions to this package are always welcome! Feel free to fork the repository and contribute
+improvements, bug fixes, or new features. Pull requests will be actively reviewed and accepted after
+verification.
+
+Thank you for using `get_storage_pro`!
+</details>
