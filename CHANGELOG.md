@@ -113,3 +113,24 @@ verification.
 
 Thank you for using `get_storage_pro`!
 </details>
+
+## 0.1.6
+<details>
+<summary>Release Notes</summary>
+
+### Changes and Enhancements
+- Major Upgrade [Shifted to Reflectable to overcome the unnecessary fromMap issue]
+
+### Changes:
+- Now annotate your model class with `@get_storage_pro` as well as extend with `CommonDataClass`
+- After annotating run `dart pub run build_runner build` in your terminal. (This will create a new file `main.reflectable.dart` in root folder of your project, don't change anything in that file)
+- Now just call `initializeReflectable();` in `main.dart` main function.
+
+### Contributions
+
+Contributions to this package are always welcome! Feel free to fork the repository and contribute
+improvements, bug fixes, or new features. Pull requests will be actively reviewed and accepted after
+verification.
+
+Thank you for using `get_storage_pro`!
+</details>

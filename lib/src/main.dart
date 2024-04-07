@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
-
+import 'package:get_storage_pro/src/reflector.dart';
+import 'package:reflectable/mirrors.dart';
+import 'package:reflectable/reflectable.dart';
 import '../get_storage_pro.dart';
 
 /// A class providing utility methods for storing and retrieving objects using GetStorage.
@@ -11,8 +13,9 @@ class GetStoragePro {
     var key = "$T|$id";
     var savedMap = GetStorage("$T").read<Map<String, dynamic>>(key) ?? {};
     try {
-      var instance = CommonDataClass.createFromMap<T>(savedMap);
-      return instance;
+      var classMirror = get_storage_pro.reflectType(T) as ClassMirror;
+      var instance = classMirror.newInstance("fromMap", [savedMap]);
+      return instance as T;
     } catch (e) {
       return null;
     }
@@ -113,14 +116,20 @@ class GetStoragePro {
   /// No need to call `GetStorage.init()`
   static Future<void> init() async {
     await GetStorage.init();
-    List<String> allContainers = (GetStorage().read("containers") as List<dynamic>? ?? []).map((e) => e.toString()).toList();
+    List<String> allContainers =
+        (GetStorage().read("containers") as List<dynamic>? ?? [])
+            .map((e) => e.toString())
+            .toList();
     await Future.forEach(allContainers, (element) async {
       await GetStorage.init(element);
     });
   }
 
   static Future<void> _putAndInit(String container) async {
-    List<String> allContainers = (GetStorage().read("containers") as List<dynamic>? ?? []).map((e) => e.toString()).toList();
+    List<String> allContainers =
+        (GetStorage().read("containers") as List<dynamic>? ?? [])
+            .map((e) => e.toString())
+            .toList();
     if (!allContainers.contains(container)) {
       allContainers.add(container);
       await GetStorage().write("containers", allContainers);

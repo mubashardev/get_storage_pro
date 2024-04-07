@@ -19,8 +19,10 @@ A Flutter package dependent on [`get_storage`](https://pub.dev/packages/get_stor
 
 ```dart
 import 'package:get_storage_pro/get_storage_pro.dart';
+import 'package:your_package/main.reflectable.dart';
 
 void main() async {
+  initializeReflectable();
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize GetStoragePro (call this before using any GetStoragePro functionality)
@@ -35,9 +37,10 @@ void main() async {
 
 # 🔨 Usage
 
-1. Define your model classes by extending `CommonDataClass` and implementing required functions. Ensure your model class includes an `id` attribute of type `String`. And implement `fromMap` and `toMap` methods.
+1. Define your model classes annotating with `@get_storage_pro` and extending `CommonDataClass` and implementing required functions. Ensure your model class includes an `id` attribute of type `String`. And implement `fromMap` and `toMap` methods.
 
 ```dart
+@get_storage_pro
 import 'package:get_storage_pro/src/common_data_class.dart';
 
 class YourModel extends CommonDataClass<YourModel> {
@@ -46,8 +49,8 @@ class YourModel extends CommonDataClass<YourModel> {
 
   YourModel({required this.id, required this.name});
 
-  @override
-  YourModel fromMap(Map<String, dynamic> map) {
+  //Must have a factory named constructor fromMap
+  factory YourModel.fromMap(Map<String, dynamic> map) {
     return YourModel(
       id: map['id'] as String,
       name: map['name'] as String,
@@ -60,12 +63,23 @@ class YourModel extends CommonDataClass<YourModel> {
   }
 }
 ```
+
+2. Now run the command in your terminal of project root: `dart pub run build_runner build`
+
+This will create a new file `main.reflectable.dart` in root folder of your project, don't change anything in that file.
+
+3. Now just call `initializeReflectable();` in `main.dart` main function.
+
+
 ## Use `GetStoragePro` to store and fetch data:
 
 ```dart
 import 'package:get_storage_pro/get_storage_pro.dart';
+import 'package:your_package/main.reflectable.dart';
 
 void main() {
+  initializeReflectable();
+
   // Save a single object
   YourModel model = YourModel(id: '1', name: 'John');
   GetStoragePro.saveObject(model);
@@ -84,7 +98,7 @@ void main() {
   // Get all saved objects
   List<YourModel> allModels = GetStoragePro.getAllObjects<YourModel>();
   print(allModels.length); // Output: 3 (including the previously saved objects)
-  
+
   // Remove an object by ID
   GetStoragePro.deleteById<YourModel>('1');
 

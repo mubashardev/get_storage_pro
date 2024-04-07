@@ -48,6 +48,7 @@ class HomePage extends StatelessWidget {
 }
 
 // Example subclass of CommonDataClass
+@get_storage_pro
 class User extends CommonDataClass<User> {
   @override
   final String id;
@@ -63,8 +64,7 @@ class User extends CommonDataClass<User> {
     };
   }
 
-  @override
-  User fromMap(Map<String, dynamic> map) {
+  factory User.fromMap(Map<String, dynamic> map) {
     return User(
       id: map['id'] as String,
       name: map['name'] as String,
