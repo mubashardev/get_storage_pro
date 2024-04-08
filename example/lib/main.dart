@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage_pro/get_storage_pro.dart';
+import 'main.reflectable.dart';
 
 void main() async {
+  initializeReflectable();
   WidgetsFlutterBinding.ensureInitialized();
   // Initialize GetStoragePro (call this before using any GetStoragePro functionality)
   await GetStoragePro.init();
@@ -48,7 +50,7 @@ class HomePage extends StatelessWidget {
 }
 
 // Example subclass of CommonDataClass
-@get_storage_pro
+@gsp
 class User extends CommonDataClass<User> {
   @override
   final String id;

@@ -1,7 +1,7 @@
 import 'package:reflectable/reflectable.dart';
 
-class Reflector extends Reflectable {
-  const Reflector() : super(invokingCapability);
+class GetStorageProReflector extends Reflectable {
+  const GetStorageProReflector() : super(invokingCapability);
 }
 
-const get_storage_pro = Reflector();
+const gsp = GetStorageProReflector();

@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:get_storage_pro/src/reflector.dart';
 import 'package:reflectable/mirrors.dart';
 import 'package:reflectable/reflectable.dart';
 import '../get_storage_pro.dart';
@@ -10,10 +9,10 @@ class GetStoragePro {
   ///
   /// Returns `null` if no object with the specified ID is found.
   static T? getObjectById<T extends CommonDataClass<T>>(String id) {
-    var key = "$T|$id";
+    var key = "$T\$$id";
     var savedMap = GetStorage("$T").read<Map<String, dynamic>>(key) ?? {};
     try {
-      var classMirror = get_storage_pro.reflectType(T) as ClassMirror;
+      var classMirror = gsp.reflectType(T) as ClassMirror;
       var instance = classMirror.newInstance("fromMap", [savedMap]);
       return instance as T;
     } catch (e) {
@@ -26,7 +25,7 @@ class GetStoragePro {
       List<CommonDataClass<T>> data) {
     _putAndInit("$T").then((value) {
       for (var element in data) {
-        var key = "$T|${element.id}";
+        var key = "$T\$${element.id}";
         GetStorage("$T").write(key, element.toMap());
       }
     });
@@ -36,7 +35,7 @@ class GetStoragePro {
   static void saveObject<T extends CommonDataClass<T>>(
       CommonDataClass<T> data) {
     _putAndInit("$T").then((value) {
-      var key = "$T|${data.id}";
+      var key = "$T\$${data.id}";
       GetStorage("$T").write(key, data.toMap());
     });
   }
@@ -47,7 +46,7 @@ class GetStoragePro {
     var data = <T>[];
     for (var element in requiredKeys) {
       try {
-        data.add(getObjectById(element.split('|').last)!);
+        data.add(getObjectById(element.split('\$').last)!);
       } catch (_) {
         debugPrint(_.toString());
       }
@@ -57,7 +56,7 @@ class GetStoragePro {
 
   /// Removes the object with the specified [id] of type [T] from storage.
   static void deleteById<T extends CommonDataClass<T>>(String id) {
-    var key = "$T|$id";
+    var key = "$T\$$id";
     GetStorage("$T").remove(key);
   }
 
@@ -65,7 +64,7 @@ class GetStoragePro {
   static void deleteAllObjects<T extends CommonDataClass<T>>() {
     var requiredKeys = GetStorage("$T").getKeys<Iterable<String>>();
     for (var element in requiredKeys) {
-      deleteById<T>(element.split('|').last);
+      deleteById<T>(element.split('\$').last);
     }
   }
 
@@ -85,7 +84,7 @@ class GetStoragePro {
   /// Calls [onData] with the updated object whenever changes occur.
   static void listenForObjectChanges<T extends CommonDataClass<T>>(
       {required String id, required Function(T?) onData}) {
-    var key = "$T|$id";
+    var key = "$T\$$id";
     // Initial Data
     onData(getObjectById(id));
 

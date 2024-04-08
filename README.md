@@ -19,7 +19,7 @@ A Flutter package dependent on [`get_storage`](https://pub.dev/packages/get_stor
 
 ```dart
 import 'package:get_storage_pro/get_storage_pro.dart';
-import 'package:your_package/main.reflectable.dart';
+import 'main.reflectable.dart';
 
 void main() async {
   initializeReflectable();
@@ -37,10 +37,10 @@ void main() async {
 
 # 🔨 Usage
 
-1. Define your model classes annotating with `@get_storage_pro` and extending `CommonDataClass` and implementing required functions. Ensure your model class includes an `id` attribute of type `String`. And implement `fromMap` and `toMap` methods.
+1. Define your model classes annotating with `@gsp` and extending `CommonDataClass` and implementing required functions. Ensure your model class includes an `id` attribute of type `String`. And implement `fromMap` and `toMap` methods.
 
 ```dart
-@get_storage_pro
+@gsp
 import 'package:get_storage_pro/src/common_data_class.dart';
 
 class YourModel extends CommonDataClass<YourModel> {
@@ -75,7 +75,7 @@ This will create a new file `main.reflectable.dart` in root folder of your proje
 
 ```dart
 import 'package:get_storage_pro/get_storage_pro.dart';
-import 'package:your_package/main.reflectable.dart';
+import 'main.reflectable.dart';
 
 void main() {
   initializeReflectable();

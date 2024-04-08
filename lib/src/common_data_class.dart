@@ -2,7 +2,7 @@
 ///
 /// ```dart
 /// import 'package:get_storage_pro/src/common_data_class.dart';
-///@get_storage_pro
+///@gsp
 /// class YourModel extends CommonDataClass<YourModel> {
 ///   final String id;
 ///   final String name;
