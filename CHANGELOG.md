@@ -114,7 +114,7 @@ verification.
 Thank you for using `get_storage_pro`!
 </details>
 
-## 0.1.7
+## 0.1.8
 <details>
 <summary>Release Notes</summary>
 

@@ -40,9 +40,9 @@ void main() async {
 1. Define your model classes annotating with `@gsp` and extending `CommonDataClass` and implementing required functions. Ensure your model class includes an `id` attribute of type `String`. And implement `fromMap` and `toMap` methods.
 
 ```dart
-@gsp
 import 'package:get_storage_pro/src/common_data_class.dart';
 
+@gsp
 class YourModel extends CommonDataClass<YourModel> {
   final String id;
   final String name;
