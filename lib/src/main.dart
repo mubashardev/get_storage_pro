@@ -71,9 +71,9 @@ class GetStoragePro {
   /// Erases all objects of all types from storage.
   static Future<void> eraseAll({bool eraseMainGetStorage = true}) async {
     List<String> allContainers =
-    (GetStorage().read("containers") as List<dynamic>? ?? [])
-        .map((e) => e.toString())
-        .toList();
+        (GetStorage().read("containers") as List<dynamic>? ?? [])
+            .map((e) => e.toString())
+            .toList();
     await Future.forEach(allContainers, (element) async {
       await GetStorage(element).erase();
     });
