@@ -1,6 +1,6 @@
 name: get_storage_pro
 description: "Get Storage with extended functionalities for simplified data storage and retrieval"
-version: 0.1.9
+version: 0.2.0
 homepage: https://github.com/MicroProgramer/get_storage_pro.git
 
 environment:
@@ -10,7 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  get_storage: ^2.1.1
+  get_storage:
+    git: https://github.com/MicroProgramer/get_storage.git
   reflectable: ^4.0.6
 
 dev_dependencies:
